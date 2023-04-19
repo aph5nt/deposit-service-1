@@ -8,6 +8,5 @@ public interface IBlockExplorer
 {
     StatusResult? GetStatus();
     BlockResult? GetBlock(string heightOrHash);
-    
     TransactionResult? GetTransaction(string txId);
 }
