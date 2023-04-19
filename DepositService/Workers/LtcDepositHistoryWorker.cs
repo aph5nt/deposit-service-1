@@ -67,7 +67,7 @@ public class LtcDepositHistoryWorker : BackgroundService
                 if(address == null) continue;
                 
                 // is this deposit to our address? if not skip
-                var existingAccount = dataContext.CustomerAccounts.SingleOrDefault(x => x.Network == "LTC" && x.Address.ToLower() == address.ToLower());
+                var existingAccount = dataContext.CustomerAccounts.SingleOrDefault(x => x.Network == AssetNetwork && x.Address.ToLower() == address.ToLower());
                 if (existingAccount == null)
                     continue;
                 
@@ -79,6 +79,7 @@ public class LtcDepositHistoryWorker : BackgroundService
 
                 var depositHistoryItem = new DepositHistoryItem
                 {
+                    Id = $"{transaction.Txid}-{vOut.N}",
                     Address = address.ToLower(),
                     Amount = long.Parse(vOut.Value),
                     AmountDecimal = decimal.Parse(vOut.Value) / AssetScale,

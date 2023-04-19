@@ -1,5 +1,5 @@
 using DepositService.BlockExplorers.Ltc;
- 
+
 namespace DepositService.Tests;
 
 public class LtcBlockExplorerTests
